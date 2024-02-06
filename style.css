@@ -1,0 +1,230 @@
+body{
+    font-family: sans-serif;
+    width: 100%;
+    background-image: url("./assets/Wallpapers\ Pokemon\ X\ Y\ \ \ 1366x768.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    
+}
+#cards{
+    padding-top: 40px;
+    width: 100%;
+    
+
+    display: flex;
+    align-items: center ;
+    justify-content: center;
+
+    gap: 10px;
+    
+
+}
+.card{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+    padding: 10px;
+    background-color: aliceblue;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+.card-img{
+    width: 80px;
+}
+.card-name{
+    margin: 0;
+    font-weight: 700;
+}
+
+input{
+display: none;
+}
+input:checked + label {
+    background-color: #30a7d7;
+}
+
+
+
+
+.title-container-img{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.title-img {
+    width: 300px;
+}
+
+.subtitle{
+    padding-left: 20%;
+    font-family: sans-serif;
+    font-size: 40px;
+    color: #fff;
+}
+
+.vidas-container{
+    width: 100%;
+    padding-top: 30px;
+    font-size: x-large;
+    background-color: #fff;
+    border-radius: 20px;
+    
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+}
+
+.vidas-container > p {
+    display: block;
+    }
+
+    .vidas-container > img {
+        width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column-reverse;
+    padding: 10px;
+    background-color: aliceblue;
+    border-radius: 20px;
+    box-sizing: border-box;
+        }
+
+        .heart-img{
+            width: 100px;
+        }
+
+        .pokemon-jugador-vidas-container, .pokemon-rival-vidas-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        
+
+        .selected-pokemon{
+            width: 180px;
+        }
+
+        #seleccionar-ataque{
+            width: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .atack-selection{
+            text-align: center;
+            font-weight: 700;
+        }
+
+.ataques-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 20px;
+    padding: 0px;
+    border: 0px;
+    
+    color: #fff;
+   
+    font-weight: 800;
+    
+    
+    
+    
+}
+
+.ataques-container > button{
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: 0px;
+    background-color: #30a7d7;
+    color: #fff;
+   
+    font-weight: 800;
+   
+}
+
+#seleccionar-pokemon-jugador{
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: 0px;
+    background-color: #30a7d7;
+    color: #fff;
+    width: 200px;
+    font-weight: 800;
+    margin-top: 40px;
+    position: absolute;
+    
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#reiniciar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#jugar-nuevamente{
+    background-color: #ee6b2f;
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: 0px;
+    
+    color: #fff;
+    
+    font-weight: 800;
+    margin: 70px 0 ;
+    
+   
+}
+
+.pokemon-seleccionado{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+    padding: 10px;
+    background-color: aliceblue;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+@media only screen and (max-width: 768px){
+
+    #cards{
+        flex-direction: column;
+    }
+    .selected-pokemon{
+        width: 80px;
+    }
+
+    .heart-img{
+        width: 30px;
+    }
+
+    p {
+        font-size: 12px;
+        text-align: center;
+    }
+
+   
+}
