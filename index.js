@@ -4,6 +4,13 @@ let ataqueRival
 let vidasJugador = 3
 let vidasRival = 3
 
+let victoriasJugador = 0
+
+let victoriasRival = 0
+
+let spanVictoriasJugador = document.getElementById("pokemon-jugador-victorias-container")
+let spanVictoriasRival = document.getElementById("pokemon-rival-victorias-container")
+
 
 let seccionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
 seccionSeleccionarAtaque.style.display = "none"
@@ -11,8 +18,14 @@ seccionSeleccionarAtaque.style.display = "none"
 let seccionSeleccionarPokemon = document.getElementById("seleccionar-pokemon")
 let jugadorVidasContainer = document.getElementById("jugador-hearts-container")
 let rivalVidasContainer = document.getElementById("rival-hearts-container")
+let cardsContainer = document.getElementById("cards")
 
 let pokemons = []
+let pokemonCard
+
+let pokemonWinCombate
+
+let pokemonWinBattle
 
 class Pokemon {
     constructor(nombre, imagen, hp) {
@@ -36,7 +49,7 @@ let pikachu = new Pokemon (  "Pikachu",
  3)
  
  let bulbasaur = new Pokemon (  "Bulbasaur",
- "/assets/bulbasaur-removebg-preview.png",
+ "/assets/bulbasur-removebg-preview.png",
   3)
   
   pikachu.ataques.push(
@@ -68,26 +81,49 @@ let pikachu = new Pokemon (  "Pikachu",
             
             )
 
-    pokemons.push(pikachu,charmander,bulbasaur)
+    pokemons.push(pikachu,charmander, squirtle,bulbasaur)
+
+    pokemons.forEach((pokemon)=> {
+        pokemonCard = `
+        <input type="radio"  name=${pokemon.nombre} id=${pokemon.nombre}>
+            <label class="card" for=${pokemon.nombre}>
+                <p class="card-name">${pokemon.nombre}</p>
+                <img class="card-img" src=${pokemon.imagen}>
+                
+            </label>
+        `
+
+        cardsContainer.innerHTML += pokemonCard
+    })
+
+
+    
 
 
 
 function seleccionarPokemon(){
-    let inputPikachu = document.getElementById("pikachu")
-    let inputCharmander = document.getElementById("charmander")
-    let inputSquirtle = document.getElementById("squirtle")
-    let inputBulbasaur = document.getElementById("bulbasaur")
+
+  
+    
+    let inputPikachu = document.getElementById("Pikachu")
+    let inputCharmander = document.getElementById("Charmander")
+    let inputSquirtle = document.getElementById("Squirtle")
+    let inputBulbasaur = document.getElementById("Bulbasaur")
     let spanPokemonJugador = document.getElementById("pokemon-jugador")
     let pokemonJugadorImg = document.getElementById("pokemon-jugador-img")
     
     pokemonJugadorImg.classList.add("selected-pokemon");
 
+
+    
+
+
     
     
 
     if(inputPikachu.checked){
-        spanPokemonJugador.innerHTML = "Pikachu"
-        pokemonJugadorImg.src = "./assets/pikachu-removebg-preview.png"
+        spanPokemonJugador.innerHTML = inputPikachu.id
+        pokemonJugadorImg.src = pikachu.imagen
 
         let heartImg1 = document.createElement("img")
         heartImg1.src = "./assets/heart.png"
@@ -109,7 +145,7 @@ function seleccionarPokemon(){
 
     
     } else if (inputCharmander.checked) {
-        spanPokemonJugador.innerHTML = "Charmander"
+        spanPokemonJugador.innerHTML = inputCharmander.nombre
         pokemonJugadorImg.src = "./assets/charmander-removebg-preview.png"
 
         let heartImg1 = document.createElement("img")
@@ -208,6 +244,8 @@ function seleccionarPokemonRival(){
         heartImg3.src = "./assets/heart.png"
         heartImg3.classList.add("heart-img");
         rivalVidasContainer.appendChild(heartImg3)
+        
+    
     } else if (pokemonAleatorio == 2){
         spanPokemonRival.innerHTML = "Charmander"
         pokemonRivalImg.src = "./assets/charmander-removebg-preview.png}"
@@ -271,6 +309,8 @@ function seleccionarPokemonRival(){
 function iniciarJuego(){
 
    
+    
+   
     let botonAtaqueTipo = document.getElementById("ataque-tipo")
     botonAtaqueTipo.addEventListener("click", ataqueTipo)
     let botonAtaqueRapido = document.getElementById("ataque-rapido")
@@ -282,7 +322,7 @@ function iniciarJuego(){
     botonJugarNuevamente.addEventListener("click", jugarNuevamente)
 
   
-
+    
 
     
 }
@@ -328,7 +368,11 @@ function crearMensaje(resultado){
 
 
 }
+function imprimirGif (pokemon){
+if(pokemon=="Pikachu"){
 
+}
+}
 
 
 function combate(){
@@ -336,31 +380,48 @@ function combate(){
     let spanVidasJugador = document.getElementById("vidas-jugador")
     let spanVidasRival = document.getElementById("vidas-rival")
 
+    
+
     if(ataqueRival == ataqueJugador){
         crearMensaje("EMPATE")
 
     } else if(ataqueJugador=='Ataque Rapido'&& ataqueRival =='Ataque Fuerte'){
         crearMensaje("GANASTE")
         vidasRival--
+        victoriasJugador++
+
         spanVidasRival.innerHTML = vidasRival
+
+        
         removeHeart(rivalVidasContainer)
         
+        addVictoryIcon(spanVictoriasJugador)
 
 
     }else if(ataqueJugador=='Ataque Tipo'&& ataqueRival=='Ataque Rapido'){
         crearMensaje("GANASTE")
         vidasRival--
+        victoriasJugador++
         spanVidasRival.innerHTML = vidasRival
+
+        
         removeHeart(rivalVidasContainer)
+        addVictoryIcon(spanVictoriasJugador)
     }else if(ataqueJugador=='Ataque Fuerte'&& ataqueRival=='Ataque Tipo'){
         crearMensaje("GANASTE")
         vidasRival--
+        victoriasJugador++
         spanVidasRival.innerHTML = vidasRival
+        
         removeHeart(rivalVidasContainer)
+        addVictoryIcon(spanVictoriasJugador)
     }else{crearMensaje("PERDISTE")
     vidasJugador--
+    victoriasRival++
     spanVidasJugador.innerHTML = vidasJugador
+    
     removeHeart(jugadorVidasContainer)
+    addVictoryIcon(spanVictoriasRival)
     
 }
 
@@ -386,6 +447,16 @@ function removeHeart(container) {
     if (hearts.length > 0) {
         container.removeChild(hearts[hearts.length - 1]);
     }
+}
+
+    function addVictoryIcon (container){
+    let victoryIcon = document.createElement("img")
+    victoryIcon.src = "./assets/pokeball-icon.png"
+    container.appendChild(victoryIcon)
+    victoryIcon.classList.add("victory-icon")
+
+
+
 }
 
 function crearMensajeFinal(resultadoFinal){

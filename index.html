@@ -22,33 +22,7 @@
         </div>
 
         <div id="cards">
-            <input type="radio"  name="pokemon" id="pikachu">
-            <label class="card" for="pikachu">
-                <p class="card-name">Pikachu</p>
-                <img class="card-img" src="./assets/pikachu-removebg-preview.png" alt="">
-                
-            </label>
-           
-            <input type="radio" name="pokemon" id="charmander">
-            <label class="card"  for="charmander">
-                <p class="card-name">Charmander</p>
-                <img  class="card-img" src="./assets/charmander-removebg-preview.png" alt="">
-                
-            </label>
             
-            <input type="radio" name="pokemon" id="squirtle">
-            <label class="card"  for="squirtle"> 
-                <p class="card-name">Squirtle</p>
-                <img class="card-img" src="./assets/squirtle-removebg-preview.png" alt="">
-                
-            </label>
-           
-            <input type="radio" name="pokemon" id="bulbasaur">
-            <label class="card"  for="bulbasaur">
-                <p class="card-name">Bulbasaur</p>
-                <img class="card-img" src="./assets/bulbasur-removebg-preview.png" alt="">
-                
-            </label>
           
             
         </div>
@@ -70,20 +44,37 @@
    
 
     <section id="seleccionar-ataque">
+
+       <div id="victorias-container">
+        <h2>Victorias</h2>
+        <div class="div-victorias-container">
+        <div id="pokemon-jugador-victorias-container" class="pokemon-jugador-victorias-container"></div>
+
+        <div id="pokemon-rival-victorias-container" class="pokemon-rival-victorias-container"></div>
+
+        </div>
+        
+
+       </div>
        
 
         <div id="vidas-container" class="vidas-container">
+           
             <div id="pokemon-jugador-vidas-container" class="pokemon-jugador-vidas-container">
             <img id="pokemon-jugador-img" src="" alt="">
-            <div id="jugador-hearts-container"></div>
             
+            <div id="jugador-hearts-container"></div>
             <p >Tu <span id="pokemon-jugador"></span> tiene <span id="vidas-jugador">3</span> corazones.</p>
+            
+           
             </div>
 
             <div class="pokemon-rival-vidas-container">
             <img id="pokemon-rival-img" src="" alt="">
             <div id="rival-hearts-container"></div>
             <p>El <span id="pokemon-rival"></span> rival tiene <span id="vidas-rival">3</span> corazones.</p>
+            
+            
             </div>
         </div>
 

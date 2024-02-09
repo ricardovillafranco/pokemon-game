@@ -109,8 +109,9 @@ input:checked + label {
         .pokemon-jugador-vidas-container, .pokemon-rival-vidas-container{
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             flex-direction: column;
+            min-height: 328px;
         }
 
         
@@ -124,6 +125,45 @@ input:checked + label {
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        #victorias-container{
+            height: 100px;
+            width: 100%;
+            background-color: #fff;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        padding-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        }
+
+        .victorias-title {
+            color: black;
+            font-size: 60px;
+            
+        }
+        .div-victorias-container{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            padding-bottom: 40px;
+            
+        }
+        .pokemon-jugador-victorias-container, .pokemon-rival-victorias-container{
+            width: 367px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .victory-icon{
+            width: 50px;
         }
         .atack-selection{
             text-align: center;
