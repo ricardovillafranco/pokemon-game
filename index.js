@@ -1,3 +1,6 @@
+let pokemonElegidoJugador
+let pokemonElegidoRival
+
 let ataqueJugador
 let ataqueRival
 
@@ -8,17 +11,22 @@ let victoriasJugador = 0
 
 let victoriasRival = 0
 
-let spanVictoriasJugador = document.getElementById("pokemon-jugador-victorias-container")
-let spanVictoriasRival = document.getElementById("pokemon-rival-victorias-container")
+const spanVictoriasJugador = document.getElementById("pokemon-jugador-victorias-container")
+const spanVictoriasRival = document.getElementById("pokemon-rival-victorias-container")
 
 
-let seccionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
+const seccionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
 seccionSeleccionarAtaque.style.display = "none"
 
-let seccionSeleccionarPokemon = document.getElementById("seleccionar-pokemon")
-let jugadorVidasContainer = document.getElementById("jugador-hearts-container")
-let rivalVidasContainer = document.getElementById("rival-hearts-container")
-let cardsContainer = document.getElementById("cards")
+const seccionSeleccionarPokemon = document.getElementById("seleccionar-pokemon")
+const jugadorVidasContainer = document.getElementById("jugador-hearts-container")
+const rivalVidasContainer = document.getElementById("rival-hearts-container")
+const cardsContainer = document.getElementById("cards")
+
+const attackButtonsContainer = document.getElementById("ataques-container")
+
+const spanPokemonRival = document.getElementById("pokemon-rival")
+const pokemonRivalImg = document.getElementById("pokemon-rival-img")
 
 let pokemons = []
 let pokemonCard
@@ -53,39 +61,39 @@ let pikachu = new Pokemon (  "Pikachu",
   3)
   
   pikachu.ataques.push(
-    {nombre:"Thunder Shock", daño:"1", id:"", icon:"", tipo:"Elemento"},
-    {nombre:"Double Team", daño:"1", id:"", icon:"", tipo:"Rapido"},
-    {nombre:"Tail Whip", daño:"1", id:"", icon:"", tipo:"Pesado"}
+    {nombre:"Thunder Shock", daño:"1", id:"thunder-shock", icon:"", tipo:"Electric"},
+    {nombre:"Double Team", daño:"1", id:"double-team", icon:"", tipo:"Normal"},
+    {nombre:"Iron Tail", daño:"1", id:"iron-tail", icon:"", tipo:"Steel"}
     
     )
 
      
     charmander.ataques.push(
-    {nombre:"Flamethrower", daño:"1", id:"", icon:"", tipo:"Elemento"},
-    {nombre:"Growl", daño:"", id:"1", icon:"",  tipo:"Rapido"},
-    {nombre:"Metal Claw", daño:"1", id:"", icon:"", tipo:"Pesado"}
+    {nombre:"Flamethrower", daño:"1", id:"flamethrower", icon:"", tipo:"Fire"},
+    {nombre:"Swift", daño:"1", id:"Swift", icon:"",  tipo:"Normal"},
+    {nombre:"Metal Claw", daño:"1", id:"metal-claw", icon:"", tipo:"Steel"}
     
     )
 
     squirtle.ataques.push(
-        {nombre:"Water Gun", daño:"1", id:"", icon:"", tipo:"Elemento"},
-        {nombre:"Rapid Spin", daño:"1", id:"", icon:"",  tipo:"Rapido"},
-        {nombre:"Iron Defense", daño:"1", id:"", icon:"", tipo:"Pesado"}
+        {nombre:"Water Gun", daño:"1", id:"water-gun", icon:"", tipo:"Water"},
+        {nombre:"Rapid Spin", daño:"1", id:"rapid-spin", icon:"",  tipo:"Normal"},
+        {nombre:"Iron Defense", daño:"1", id:"iron-defense", icon:"", tipo:"Steel"}
         
         )
 
         bulbasaur.ataques.push(
-            {nombre:"Razor Leaf", daño:"1", id:"", icon:"", tipo:"Elemento"},
-            {nombre:"Tackle", daño:"1", id:"", icon:"",  tipo:"Rapido"},
-            {nombre:"Solar Beam", daño:"1", id:"", icon:"", tipo:"Pesado"}
+            {nombre:"Razor Leaf", daño:"1", id:"razor-leaf", icon:"", tipo:"Grass"},
+            {nombre:"Tackle", daño:"1", id:"tackle", icon:"",  tipo:"Normal"},
+            {nombre:"Venoshock", daño:"1", id:"venoshock", icon:"", tipo:"Poison"}
             
             )
 
-    pokemons.push(pikachu,charmander, squirtle,bulbasaur)
+    pokemons.push(pikachu,charmander, squirtle ,bulbasaur)
 
     pokemons.forEach((pokemon)=> {
         pokemonCard = `
-        <input type="radio"  name=${pokemon.nombre} id=${pokemon.nombre}>
+        <input type="radio"  name="pokemon" id=${pokemon.nombre}>
             <label class="card" for=${pokemon.nombre}>
                 <p class="card-name">${pokemon.nombre}</p>
                 <img class="card-img" src=${pokemon.imagen}>
@@ -96,114 +104,78 @@ let pikachu = new Pokemon (  "Pikachu",
         cardsContainer.innerHTML += pokemonCard
     })
 
-
+    function printhearts(heartsAmount,vidasContainer){
     
 
+        for (let i = 0; i < heartsAmount; i++) {
+            let heartImg = document.createElement("img")
+            heartImg.src = "./assets/heart.png"
+            heartImg.classList.add("heart-img");
+            vidasContainer.appendChild(heartImg)
+        }
+    
+    }
 
+    function printButtons (pokemon){
+        pokemon.ataques.forEach((ataque) => {
+           let buttonAttack = document.createElement("button")
+           buttonAttack.textContent  = ataque.nombre
+           
+          
+            attackButtonsContainer.appendChild(buttonAttack)
 
+            
+            
+        }
+    )
+       
+      }
+    
 function seleccionarPokemon(){
 
-  
-    
     let inputPikachu = document.getElementById("Pikachu")
     let inputCharmander = document.getElementById("Charmander")
     let inputSquirtle = document.getElementById("Squirtle")
     let inputBulbasaur = document.getElementById("Bulbasaur")
     let spanPokemonJugador = document.getElementById("pokemon-jugador")
     let pokemonJugadorImg = document.getElementById("pokemon-jugador-img")
-    
+        
     pokemonJugadorImg.classList.add("selected-pokemon");
-
-
-    
-
-
-    
-    
 
     if(inputPikachu.checked){
         spanPokemonJugador.innerHTML = inputPikachu.id
         pokemonJugadorImg.src = pikachu.imagen
 
-        let heartImg1 = document.createElement("img")
-        heartImg1.src = "./assets/heart.png"
-        heartImg1.classList.add("heart-img");
-        jugadorVidasContainer.appendChild(heartImg1)
+        printhearts(3, jugadorVidasContainer)
 
-        let heartImg2 = document.createElement("img")
-        heartImg2.src = "./assets/heart.png"
-        heartImg2.classList.add("heart-img");
-        jugadorVidasContainer.appendChild(heartImg2)
+        pokemonElegidoJugador = pikachu.ataques
 
-        let heartImg3 = document.createElement("img")
-        heartImg3.src = "./assets/heart.png"
-        heartImg3.classList.add("heart-img");
-        jugadorVidasContainer.appendChild(heartImg3)
-
-      
-        
+        console.log(pokemonElegidoJugador)
+        printButtons(pikachu)
 
     
     } else if (inputCharmander.checked) {
-        spanPokemonJugador.innerHTML = inputCharmander.nombre
+        spanPokemonJugador.innerHTML = inputCharmander.id
         pokemonJugadorImg.src = "./assets/charmander-removebg-preview.png"
+        printhearts(3, jugadorVidasContainer)
 
-        let heartImg1 = document.createElement("img")
-        heartImg1.src = "./assets/heart.png"
-        heartImg1.classList.add("heart-img");
-        jugadorVidasContainer.appendChild(heartImg1)
-
-        let heartImg2 = document.createElement("img")
-        heartImg2.src = "./assets/heart.png"
-        heartImg2.classList.add("heart-img");
-        jugadorVidasContainer.appendChild(heartImg2)
-
-        let heartImg3 = document.createElement("img")
-        heartImg3.src = "./assets/heart.png"
-        heartImg3.classList.add("heart-img");
-        jugadorVidasContainer.appendChild(heartImg3)
+        printButtons(charmander)
 
        
 
     } else if(inputSquirtle.checked){
-        spanPokemonJugador.innerHTML = "Squirtle"
+        spanPokemonJugador.innerHTML = inputSquirtle.id
         pokemonJugadorImg.src = "./assets/squirtle-removebg-preview.png"
-
-        let heartImg1 = document.createElement("img")
-        heartImg1.src = "./assets/heart.png"
-        heartImg1.classList.add("heart-img");
-        jugadorVidasContainer.appendChild(heartImg1)
-
-        let heartImg2 = document.createElement("img")
-        heartImg2.src = "./assets/heart.png"
-        heartImg2.classList.add("heart-img");
-        jugadorVidasContainer.appendChild(heartImg2)
-
-        let heartImg3 = document.createElement("img")
-        heartImg3.src = "./assets/heart.png"
-        heartImg3.classList.add("heart-img");
-        jugadorVidasContainer.appendChild(heartImg3)
+        printhearts(3, jugadorVidasContainer)
+        printButtons(squirtle)
 
        
 
     } else if(inputBulbasaur.checked){
-        spanPokemonJugador.innerHTML = "Bulbasaur"
+        spanPokemonJugador.innerHTML = inputBulbasaur.id
         pokemonJugadorImg.src = "./assets/bulbasur-removebg-preview.png"
-
-        let heartImg1 = document.createElement("img")
-        heartImg1.src = "./assets/heart.png"
-        heartImg1.classList.add("heart-img");
-        jugadorVidasContainer.appendChild(heartImg1)
-
-        let heartImg2 = document.createElement("img")
-        heartImg2.src = "./assets/heart.png"
-        heartImg2.classList.add("heart-img");
-        jugadorVidasContainer.appendChild(heartImg2)
-
-        let heartImg3 = document.createElement("img")
-        heartImg3.src = "./assets/heart.png"
-        heartImg3.classList.add("heart-img");
-        jugadorVidasContainer.appendChild(heartImg3)
+        printhearts(3, jugadorVidasContainer)
+        printButtons(bulbasaur)
 
 
     } else {
@@ -213,6 +185,8 @@ function seleccionarPokemon(){
 
     seleccionarPokemonRival()
     seccionSeleccionarAtaque.style.display = "block"
+
+    
     iniciarJuego()
     seccionSeleccionarPokemon.style.display= "none"
 
@@ -223,85 +197,31 @@ function seleccionarPokemon(){
 
 function seleccionarPokemonRival(){
     let pokemonAleatorio = aleatorio(1,4)
-    let spanPokemonRival = document.getElementById("pokemon-rival")
-    let pokemonRivalImg = document.getElementById("pokemon-rival-img")
+    
     pokemonRivalImg.classList.add("selected-pokemon");
     if (pokemonAleatorio == 1){
         spanPokemonRival.innerHTML = "Pikachu"
         pokemonRivalImg.src = "./assets/pikachu-removebg-preview.png"
-
-        let heartImg1 = document.createElement("img")
-        heartImg1.src = "./assets/heart.png"
-        heartImg1.classList.add("heart-img");
-        rivalVidasContainer.appendChild(heartImg1)
-
-        let heartImg2 = document.createElement("img")
-        heartImg2.src = "./assets/heart.png"
-        heartImg2.classList.add("heart-img");
-        rivalVidasContainer.appendChild(heartImg2)
-
-        let heartImg3 = document.createElement("img")
-        heartImg3.src = "./assets/heart.png"
-        heartImg3.classList.add("heart-img");
-        rivalVidasContainer.appendChild(heartImg3)
+        printhearts(3, rivalVidasContainer)
         
     
     } else if (pokemonAleatorio == 2){
         spanPokemonRival.innerHTML = "Charmander"
         pokemonRivalImg.src = "./assets/charmander-removebg-preview.png}"
 
-        let heartImg1 = document.createElement("img")
-        heartImg1.src = "./assets/heart.png"
-        heartImg1.classList.add("heart-img");
-        rivalVidasContainer.appendChild(heartImg1)
-
-        let heartImg2 = document.createElement("img")
-        heartImg2.src = "./assets/heart.png"
-        heartImg2.classList.add("heart-img");
-        rivalVidasContainer.appendChild(heartImg2)
-
-        let heartImg3 = document.createElement("img")
-        heartImg3.src = "./assets/heart.png"
-        heartImg3.classList.add("heart-img");
-        rivalVidasContainer.appendChild(heartImg3)
+        printhearts(3, rivalVidasContainer)
 
     } else if (pokemonAleatorio == 3){
         spanPokemonRival.innerHTML = "Squirtle"
         pokemonRivalImg.src = "./assets/squirtle-removebg-preview.png"
 
-        let heartImg1 = document.createElement("img")
-        heartImg1.src = "./assets/heart.png"
-        heartImg1.classList.add("heart-img");
-        rivalVidasContainer.appendChild(heartImg1)
-
-        let heartImg2 = document.createElement("img")
-        heartImg2.src = "./assets/heart.png"
-        heartImg2.classList.add("heart-img");
-        rivalVidasContainer.appendChild(heartImg2)
-
-        let heartImg3 = document.createElement("img")
-        heartImg3.src = "./assets/heart.png"
-        heartImg3.classList.add("heart-img");
-        rivalVidasContainer.appendChild(heartImg3)
+        printhearts(3, rivalVidasContainer)
 
     } else if (pokemonAleatorio == 4){
         spanPokemonRival.innerHTML = "Bulbasaur"
         pokemonRivalImg.src = "./assets/bulbasur-removebg-preview.png"
 
-        let heartImg1 = document.createElement("img")
-        heartImg1.src = "./assets/heart.png"
-        heartImg1.classList.add("heart-img");
-        rivalVidasContainer.appendChild(heartImg1)
-
-        let heartImg2 = document.createElement("img")
-        heartImg2.src = "./assets/heart.png"
-        heartImg2.classList.add("heart-img");
-        rivalVidasContainer.appendChild(heartImg2)
-
-        let heartImg3 = document.createElement("img")
-        heartImg3.src = "./assets/heart.png"
-        heartImg3.classList.add("heart-img");
-        rivalVidasContainer.appendChild(heartImg3)
+        printhearts(3, rivalVidasContainer)
 
     }
 }
@@ -388,6 +308,7 @@ function combate(){
     } else if(ataqueJugador=='Ataque Rapido'&& ataqueRival =='Ataque Fuerte'){
         crearMensaje("GANASTE")
         vidasRival--
+        
         victoriasJugador++
 
         spanVidasRival.innerHTML = vidasRival
