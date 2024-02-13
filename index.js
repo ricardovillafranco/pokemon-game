@@ -84,19 +84,19 @@ let pikachu = new Pokemon (  "Pikachu",
     charmander.ataques.push(
     {nombre:"Flamethrower", daño:"1", id:"flamethrower", icon:"./assets/fire-type-removebg-preview.png", tipo:"Fire", function: ataqueTipo},
     {nombre:"Swift", daño:"1", id:"Swift", icon:"./assets/normal-type-removebg-preview.png",  tipo:"Normal", function: ataqueRapido},
-    {nombre:"Metal Claw", daño:"1", id:"metal-claw", icon:"", tipo:"Steel", function: ataqueFuerte}
+    {nombre:"Metal Claw", daño:"1", id:"metal-claw", icon:"./assets/steel-type-removebg-preview.png", tipo:"Steel", function: ataqueFuerte}
     
     )
 
     squirtle.ataques.push(
-        {nombre:"Water Gun", daño:"1", id:"water-gun", icon:"", tipo:"Water", function: ataqueTipo},
+        {nombre:"Water Gun", daño:"1", id:"water-gun", icon:"./assets/water-type-removebg-preview.png", tipo:"Water", function: ataqueTipo},
         {nombre:"Rapid Spin", daño:"1", id:"rapid-spin", icon:"./assets/normal-type-removebg-preview.png",  tipo:"Normal", function: ataqueRapido},
         {nombre:"Iron Defense", daño:"1", id:"iron-defense", icon:"./assets/steel-type-removebg-preview.png", tipo:"Steel", function: ataqueFuerte}
         
         )
 
         bulbasaur.ataques.push(
-            {nombre:"Razor Leaf", daño:"1", id:"razor-leaf", icon:"", tipo:"Grass", function: ataqueTipo},
+            {nombre:"Razor Leaf", daño:"1", id:"razor-leaf", icon:"./assets/grass-type-removebg-preview.png", tipo:"Grass", function: ataqueTipo},
             {nombre:"Tackle", daño:"1", id:"tackle", icon:"./assets/normal-type-removebg-preview.png",  tipo:"Normal", function: ataqueRapido},
             {nombre:"Venoshock", daño:"1", id:"venoshock", icon:"./assets/poison-type-removebg-preview.png", tipo:"Poison", function: ataqueFuerte}
             
