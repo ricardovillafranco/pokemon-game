@@ -1,5 +1,5 @@
-let pokemonElegidoJugador
-let pokemonElegidoRival
+let pokemonElegidoJugador = {}
+let pokemonElegidoRival = {}
 
 let ataqueJugador
 let ataqueRival
@@ -14,9 +14,12 @@ let victoriasRival = 0
 const spanVictoriasJugador = document.getElementById("pokemon-jugador-victorias-container")
 const spanVictoriasRival = document.getElementById("pokemon-rival-victorias-container")
 
+const seleccionarButton =  document.getElementById("seleccionar-pokemon-jugador")
+
 
 const seccionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
 seccionSeleccionarAtaque.style.display = "none"
+
 
 const seccionSeleccionarPokemon = document.getElementById("seleccionar-pokemon")
 const jugadorVidasContainer = document.getElementById("jugador-hearts-container")
@@ -28,6 +31,15 @@ const attackButtonsContainer = document.getElementById("ataques-container")
 const spanPokemonRival = document.getElementById("pokemon-rival")
 const pokemonRivalImg = document.getElementById("pokemon-rival-img")
 
+const sectionMessages = document.getElementById("mensajes")
+
+const modal = document.getElementById("myModal");
+const modalMessageContainer = document.getElementById("modal-message");
+
+const buttonJugarDeNuevo = document.getElementById("jugar-nuevamente")
+
+buttonJugarDeNuevo.addEventListener("click", jugarNuevamente)
+
 let pokemons = []
 let pokemonCard
 
@@ -36,56 +48,57 @@ let pokemonWinCombate
 let pokemonWinBattle
 
 class Pokemon {
-    constructor(nombre, imagen, hp) {
+    constructor(nombre, imagen, hp, gif) {
         this.nombre = nombre
         this.imagen = imagen
         this.hp = hp
+        this.gif = gif
         this.ataques = []
     }
 }
 
 let pikachu = new Pokemon (  "Pikachu",
 "/assets/pikachu-removebg-preview.png",
- 3)
+ 3, "./assets/ataque-pikachu.gif")
 
  let charmander = new Pokemon (  "Charmander",
 "/assets/charmander-removebg-preview.png",
- 3)
+ 3, "./assets/ataque-charmander.gif")
 
  let squirtle = new Pokemon (  "Squirtle",
 "/assets/squirtle-removebg-preview.png",
- 3)
+ 3, "./assets/ataque-squirtle.gif")
  
  let bulbasaur = new Pokemon (  "Bulbasaur",
  "/assets/bulbasur-removebg-preview.png",
-  3)
+  3, "./assets/ataque-bulbasaur.gif")
   
   pikachu.ataques.push(
-    {nombre:"Thunder Shock", daño:"1", id:"thunder-shock", icon:"", tipo:"Electric"},
-    {nombre:"Double Team", daño:"1", id:"double-team", icon:"", tipo:"Normal"},
-    {nombre:"Iron Tail", daño:"1", id:"iron-tail", icon:"", tipo:"Steel"}
+    {nombre:"Thunder Shock", daño:"1", id:"thunder-shock", icon:"./assets/electric-type-removebg-preview.png", tipo:"Electric", function: ataqueTipo},
+    {nombre:"Double Team", daño:"1", id:"double-team", icon:"./assets/normal-type-removebg-preview.png", tipo:"Normal", function: ataqueRapido},
+    {nombre:"Iron Tail", daño:"1", id:"iron-tail", icon:"./assets/steel-type-removebg-preview.png", tipo:"Steel", function: ataqueFuerte}
     
     )
 
      
     charmander.ataques.push(
-    {nombre:"Flamethrower", daño:"1", id:"flamethrower", icon:"", tipo:"Fire"},
-    {nombre:"Swift", daño:"1", id:"Swift", icon:"",  tipo:"Normal"},
-    {nombre:"Metal Claw", daño:"1", id:"metal-claw", icon:"", tipo:"Steel"}
+    {nombre:"Flamethrower", daño:"1", id:"flamethrower", icon:"./assets/fire-type-removebg-preview.png", tipo:"Fire", function: ataqueTipo},
+    {nombre:"Swift", daño:"1", id:"Swift", icon:"./assets/normal-type-removebg-preview.png",  tipo:"Normal", function: ataqueRapido},
+    {nombre:"Metal Claw", daño:"1", id:"metal-claw", icon:"", tipo:"Steel", function: ataqueFuerte}
     
     )
 
     squirtle.ataques.push(
-        {nombre:"Water Gun", daño:"1", id:"water-gun", icon:"", tipo:"Water"},
-        {nombre:"Rapid Spin", daño:"1", id:"rapid-spin", icon:"",  tipo:"Normal"},
-        {nombre:"Iron Defense", daño:"1", id:"iron-defense", icon:"", tipo:"Steel"}
+        {nombre:"Water Gun", daño:"1", id:"water-gun", icon:"", tipo:"Water", function: ataqueTipo},
+        {nombre:"Rapid Spin", daño:"1", id:"rapid-spin", icon:"./assets/normal-type-removebg-preview.png",  tipo:"Normal", function: ataqueRapido},
+        {nombre:"Iron Defense", daño:"1", id:"iron-defense", icon:"./assets/steel-type-removebg-preview.png", tipo:"Steel", function: ataqueFuerte}
         
         )
 
         bulbasaur.ataques.push(
-            {nombre:"Razor Leaf", daño:"1", id:"razor-leaf", icon:"", tipo:"Grass"},
-            {nombre:"Tackle", daño:"1", id:"tackle", icon:"",  tipo:"Normal"},
-            {nombre:"Venoshock", daño:"1", id:"venoshock", icon:"", tipo:"Poison"}
+            {nombre:"Razor Leaf", daño:"1", id:"razor-leaf", icon:"", tipo:"Grass", function: ataqueTipo},
+            {nombre:"Tackle", daño:"1", id:"tackle", icon:"./assets/normal-type-removebg-preview.png",  tipo:"Normal", function: ataqueRapido},
+            {nombre:"Venoshock", daño:"1", id:"venoshock", icon:"./assets/poison-type-removebg-preview.png", tipo:"Poison", function: ataqueFuerte}
             
             )
 
@@ -120,16 +133,42 @@ let pikachu = new Pokemon (  "Pikachu",
         pokemon.ataques.forEach((ataque) => {
            let buttonAttack = document.createElement("button")
            buttonAttack.textContent  = ataque.nombre
-           
-          
-            attackButtonsContainer.appendChild(buttonAttack)
+           buttonAttack.id = ataque.id
+
+           if (ataque.icon) {
+            // Crear un elemento de imagen
+            let iconImg = document.createElement("img");
+            iconImg.src = ataque.icon;
+            iconImg.alt = ataque.nombre; // Proporciona un texto alternativo para la imagen (puedes ajustarlo según sea necesario)
+            iconImg.classList.add("attack-icon")
+            // Añadir la imagen al botón
+            buttonAttack.appendChild(iconImg);
+        }
+
+           attackButtonsContainer.appendChild(buttonAttack)
 
             
-            
+         buttonAttack = document.getElementById(ataque.id)
+         buttonAttack.addEventListener("click", ataque.function)
+
+         
         }
     )
        
       }
+
+      function seleccionDePokemon(pokemon, variableDelPokemon) {
+        variableDelPokemon.nombre = pokemon.nombre;
+        variableDelPokemon.imagen = pokemon.imagen;
+        variableDelPokemon.hp = pokemon.hp;
+        variableDelPokemon.gif = pokemon.gif
+        variableDelPokemon.ataques = pokemon.ataques
+
+      
+        // Copia todas las propiedades necesarias de 'pokemon' a 'pokemonElegidoJugador'
+        // Puedes agregar más propiedades aquí según sea necesario
+    }
+    
     
 function seleccionarPokemon(){
 
@@ -148,10 +187,10 @@ function seleccionarPokemon(){
 
         printhearts(3, jugadorVidasContainer)
 
-        pokemonElegidoJugador = pikachu.ataques
+        seleccionDePokemon(pikachu, pokemonElegidoJugador )
 
         console.log(pokemonElegidoJugador)
-        printButtons(pikachu)
+        printButtons(pikachu, )
 
     
     } else if (inputCharmander.checked) {
@@ -161,6 +200,8 @@ function seleccionarPokemon(){
 
         printButtons(charmander)
 
+        seleccionDePokemon(charmander, pokemonElegidoJugador )
+
        
 
     } else if(inputSquirtle.checked){
@@ -168,6 +209,7 @@ function seleccionarPokemon(){
         pokemonJugadorImg.src = "./assets/squirtle-removebg-preview.png"
         printhearts(3, jugadorVidasContainer)
         printButtons(squirtle)
+        seleccionDePokemon(squirtle, pokemonElegidoJugador )
 
        
 
@@ -176,6 +218,7 @@ function seleccionarPokemon(){
         pokemonJugadorImg.src = "./assets/bulbasur-removebg-preview.png"
         printhearts(3, jugadorVidasContainer)
         printButtons(bulbasaur)
+        seleccionDePokemon(bulbasaur, pokemonElegidoJugador )
 
 
     } else {
@@ -186,9 +229,10 @@ function seleccionarPokemon(){
     seleccionarPokemonRival()
     seccionSeleccionarAtaque.style.display = "block"
 
-    
-    iniciarJuego()
-    seccionSeleccionarPokemon.style.display= "none"
+   
+    seccionSeleccionarPokemon.style.display = "none"
+    seleccionarButton.style.display = "none"
+   
 
     
 
@@ -203,6 +247,7 @@ function seleccionarPokemonRival(){
         spanPokemonRival.innerHTML = "Pikachu"
         pokemonRivalImg.src = "./assets/pikachu-removebg-preview.png"
         printhearts(3, rivalVidasContainer)
+        seleccionDePokemon(pikachu, pokemonElegidoRival)
         
     
     } else if (pokemonAleatorio == 2){
@@ -210,42 +255,26 @@ function seleccionarPokemonRival(){
         pokemonRivalImg.src = "./assets/charmander-removebg-preview.png}"
 
         printhearts(3, rivalVidasContainer)
+        seleccionDePokemon(charmander, pokemonElegidoRival)
 
     } else if (pokemonAleatorio == 3){
         spanPokemonRival.innerHTML = "Squirtle"
         pokemonRivalImg.src = "./assets/squirtle-removebg-preview.png"
 
         printhearts(3, rivalVidasContainer)
+        seleccionDePokemon(squirtle, pokemonElegidoRival)
 
     } else if (pokemonAleatorio == 4){
         spanPokemonRival.innerHTML = "Bulbasaur"
         pokemonRivalImg.src = "./assets/bulbasur-removebg-preview.png"
 
         printhearts(3, rivalVidasContainer)
+        seleccionDePokemon(bulbasaur, pokemonElegidoRival)
 
     }
 }
 
-function iniciarJuego(){
 
-   
-    
-   
-    let botonAtaqueTipo = document.getElementById("ataque-tipo")
-    botonAtaqueTipo.addEventListener("click", ataqueTipo)
-    let botonAtaqueRapido = document.getElementById("ataque-rapido")
-    botonAtaqueRapido.addEventListener("click", ataqueRapido)
-    let botonAtaqueFuerte  = document.getElementById("ataque-fuerte")
-    botonAtaqueFuerte.addEventListener("click", ataqueFuerte)
-
-    let botonJugarNuevamente = document.getElementById("jugar-nuevamente")
-    botonJugarNuevamente.addEventListener("click", jugarNuevamente)
-
-  
-    
-
-    
-}
 
 
 
@@ -278,21 +307,26 @@ function ataqueAleatorioRival(){
 }
 
 function crearMensaje(resultado){
-    let sectionmessages = document.getElementById("mensajes")
+    
     
     let parrafo = document.createElement("p")
     parrafo.innerHTML = "Tu Pokemon atacó con: " + ataqueJugador + ", el pokemon rival ataco con: " + ataqueRival +" "+ resultado
-    document.getElementById("mensajes")
+    
 
-    sectionmessages.appendChild(parrafo)
+    sectionMessages.appendChild(parrafo)
+
+
+}
+function imprimirGif (pokemonGanadorCombate){
+
+    let winnerGif = document.createElement("img")
+    winnerGif.src = pokemonGanadorCombate.gif
+    modalMessageContainer.appendChild(winnerGif)
 
 
 }
-function imprimirGif (pokemon){
-if(pokemon=="Pikachu"){
 
-}
-}
+
 
 
 function combate(){
@@ -304,9 +338,11 @@ function combate(){
 
     if(ataqueRival == ataqueJugador){
         crearMensaje("EMPATE")
+        crearMensajeModal("EMPATE")
 
     } else if(ataqueJugador=='Ataque Rapido'&& ataqueRival =='Ataque Fuerte'){
         crearMensaje("GANASTE")
+        crearMensajeModal("GANASTE")
         vidasRival--
         
         victoriasJugador++
@@ -317,10 +353,13 @@ function combate(){
         removeHeart(rivalVidasContainer)
         
         addVictoryIcon(spanVictoriasJugador)
+
+        imprimirGif(pokemonElegidoJugador)
 
 
     }else if(ataqueJugador=='Ataque Tipo'&& ataqueRival=='Ataque Rapido'){
         crearMensaje("GANASTE")
+        crearMensajeModal("GANASTE")
         vidasRival--
         victoriasJugador++
         spanVidasRival.innerHTML = vidasRival
@@ -328,21 +367,26 @@ function combate(){
         
         removeHeart(rivalVidasContainer)
         addVictoryIcon(spanVictoriasJugador)
+        imprimirGif(pokemonElegidoJugador)
     }else if(ataqueJugador=='Ataque Fuerte'&& ataqueRival=='Ataque Tipo'){
         crearMensaje("GANASTE")
+        crearMensajeModal("GANASTE")
         vidasRival--
         victoriasJugador++
         spanVidasRival.innerHTML = vidasRival
         
         removeHeart(rivalVidasContainer)
         addVictoryIcon(spanVictoriasJugador)
+        imprimirGif(pokemonElegidoJugador)
     }else{crearMensaje("PERDISTE")
+    crearMensajeModal("PERDISTE")
     vidasJugador--
     victoriasRival++
     spanVidasJugador.innerHTML = vidasJugador
     
     removeHeart(jugadorVidasContainer)
     addVictoryIcon(spanVictoriasRival)
+    imprimirGif(pokemonElegidoRival)
     
 }
 
@@ -380,25 +424,47 @@ function removeHeart(container) {
 
 }
 
-function crearMensajeFinal(resultadoFinal){
-    let sectionmessages = document.getElementById("mensajes")
+function crearMensajeFinal(resultadoFinal ){
+    
     
     let parrafo = document.createElement("p")
     parrafo.innerHTML = resultadoFinal
-    document.getElementById("mensajes")
-
-    sectionmessages.appendChild(parrafo)
-
-    let botonAtaqueTipo = document.getElementById("ataque-tipo")
-    botonAtaqueTipo.disabled = true
-    let botonAtaqueRapido = document.getElementById("ataque-rapido")
     
-    botonAtaqueRapido.disabled = true
-    let botonAtaqueFuerte  = document.getElementById("ataque-fuerte")
-    botonAtaqueFuerte.disabled = true
+
+    sectionMessages.appendChild(parrafo)
+
+    disableAttackButtons()
 
 
 }
+
+function crearMensajeModal(resultado) {
+    
+    modalMessageContainer.innerHTML = "Tu Pokemon atacó con: " + ataqueJugador + ", el pokemon rival ataco con: " + ataqueRival + " " + resultado;
+
+    // Mostrar el modal
+    
+    modal.style.display = "block";
+
+    // Asignar acción para cerrar el modal al hacer clic en el botón "Cerrar"
+    let closeModalButton = document.getElementById("closeModal");
+    closeModalButton.addEventListener("click", function() {
+        modal.style.display = "none";
+
+
+    });
+}
+
+
+function disableAttackButtons(){
+    
+    let buttons = attackButtonsContainer.getElementsByTagName("button")
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = true;
+    }
+    
+    }
+
 
 
 
@@ -415,7 +481,7 @@ function aleatorio(min, max){
 
 
 
-let seleccionarButton =  document.getElementById("seleccionar-pokemon-jugador")
+
 
 
 seleccionarButton.addEventListener("click", seleccionarPokemon)

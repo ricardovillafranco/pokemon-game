@@ -191,13 +191,21 @@ input:checked + label {
 
 .ataques-container > button{
     border-radius: 20px;
-    padding: 10px 20px;
-    border: 0px;
-    background-color: #30a7d7;
-    color: #fff;
+    padding: 20px 40px;
+ border: 0;
+    
+    color: #020202;
+    
    
     font-weight: 800;
-   
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 10px;
+}
+
+.attack-icon{
+    width: 40px;
 }
 
 #seleccionar-pokemon-jugador{
@@ -247,6 +255,50 @@ input:checked + label {
     border-radius: 20px;
     box-sizing: border-box;
 }
+
+
+/* Estilos para el modal */
+.modal {
+    display: none; /* Por defecto, el modal está oculto */
+    position: fixed; /* Posición fija para cubrir toda la pantalla */
+    z-index: 1; /* Ubicar el modal por encima de otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permite hacer scroll si el contenido es demasiado grande */
+    background-color: rgba(0,0,0,0.5); /* Fondo oscuro semi-transparente */
+    
+  }
+  
+  /* Contenido del modal */
+  .modal-content {
+    background-color: #fefefe; /* Fondo del contenido */
+    margin: 15% auto; /* Margen superior e inferior y centrado horizontalmente */
+    padding: 40px;
+    border: 1px solid #888;
+    width: 80%; /* Ancho del contenido */
+    border-radius: 20px;
+  }
+
+  #modal-message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight:700;
+  }
+  
+  /* Botón para cerrar el modal */
+  #closeModal {
+    float: right; /* Botón alineado a la derecha */
+    border-radius: 20px;
+    padding:  20px, 25px;
+  }
+  
+  
 
 @media only screen and (max-width: 768px){
 
