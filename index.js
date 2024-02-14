@@ -64,20 +64,20 @@ class Pokemon {
 }
 
 let pikachu = new Pokemon (  "Pikachu",
-"/assets/pikachu-removebg-preview.png",
- 3, "./assets/ataque-pikachu.gif")
+"assets/pikachu-removebg-preview.png",
+ 3, "assets/ataque-pikachu.gif")
 
  let charmander = new Pokemon (  "Charmander",
-"/assets/charmander-removebg-preview.png",
- 3, "./assets/ataque-charmander.gif")
+"assets/charmander-removebg-preview.png",
+ 3, "assets/ataque-charmander.gif")
 
  let squirtle = new Pokemon (  "Squirtle",
-"/assets/squirtle-removebg-preview.png",
- 3, "./assets/ataque-squirtle.gif")
+"assets/squirtle-removebg-preview.png",
+ 3, "assets/ataque-squirtle.gif")
  
  let bulbasaur = new Pokemon (  "Bulbasaur",
- "/assets/bulbasur-removebg-preview.png",
-  3, "./assets/ataque-bulbasaur.gif")
+ "assets/bulbasur-removebg-preview.png",
+  3, "assets/ataque-bulbasaur.gif")
   
   pikachu.ataques.push(
     {nombre:"Thunder Shock", daño:"1", id:"thunder-shock", icon:"./assets/electric-type-removebg-preview.png", tipo:"Electric", ataqueFunction: ataqueTipo},
