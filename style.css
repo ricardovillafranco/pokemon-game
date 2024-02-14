@@ -67,10 +67,16 @@ input:checked + label {
 }
 
 .subtitle{
-    padding-left: 20%;
+    
     font-family: sans-serif;
     font-size: 40px;
    background-color: aliceblue;
+   border-radius: 25px;
+   height: 60px;
+   display: flex;
+   align-items: center;
+    justify-content:center;
+
 }
 
 .vidas-container{
@@ -342,6 +348,35 @@ input:checked + label {
     font-size: 18px;
     border: 0px;
     
+
+  }
+
+  .final-message-ganaste{
+    background-color: aliceblue;
+    font-size: 55px;
+    
+    color: #2699d7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 25px;
+    height: 150px;
+    font-weight: 700;
+    
+  }
+
+  .final-message-perdiste{
+    background-color: aliceblue;
+    font-size: 55px;
+    
+    color: #d74f30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 25px;
+    height: 150px;
 
   }
   

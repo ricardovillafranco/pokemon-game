@@ -487,7 +487,7 @@ function ataqueAleatorioRival(){
 
 function verificarVidas(){
     if (vidasRival == 0){
-        resultadoFinal = "Felicidades has ganado el combate."
+        resultadoFinal = "¡¡¡Felicidades has ganado el combate!!!"
         crearMensajeFinal(resultadoFinal)
         
     } else if (vidasJugador == 0){
@@ -589,13 +589,14 @@ function crearMensajeFinal(resultadoFinal ){
     
     
     let parrafo = document.createElement("p")
-    parrafo.innerHTML = `
+
+
+    if(resultadoFinal == "¡¡¡Felicidades has ganado el combate!!!") {
+        parrafo.innerHTML = `<span class="final-message-ganaste">${resultadoFinal}</span>`;
+    } else {
+        parrafo.innerHTML = `<span class="final-message-perdiste">${resultadoFinal}</span>`;
+    }
     
-    
-    <span class="attack-name">${resultadoFinal}</span> 
-  
-    
-`;
     
 
     sectionMessages.appendChild(parrafo)
