@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/ricardovillafranco/pokemon-game/issues"
   },
-  "homepage": "https://github.com/ricardovillafranco/pokemon-game#readme"
+  "homepage": "https://github.com/ricardovillafranco/pokemon-game#readme",
+  "dependencies": {
+    "js-confetti": "^0.12.0"
+  }
 }

@@ -1,7 +1,7 @@
 body{
     font-family: sans-serif;
     width: 100%;
-    background-image: url("./assets/Wallpapers\ Pokemon\ X\ Y\ \ \ 1366x768.jpeg");
+    background-image: url("./assets/background-image.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -70,14 +70,14 @@ input:checked + label {
     padding-left: 20%;
     font-family: sans-serif;
     font-size: 40px;
-    color: #fff;
+   background-color: aliceblue;
 }
 
 .vidas-container{
     width: 100%;
     padding-top: 30px;
     font-size: x-large;
-    background-color: #fff;
+    background-color: aliceblue;
     border-radius: 20px;
     
     display: flex;
@@ -130,7 +130,7 @@ input:checked + label {
         #victorias-container{
             height: 100px;
             width: 100%;
-            background-color: #fff;
+            background-color: aliceblue;
         border-radius: 20px;
         margin-bottom: 20px;
         padding-top: 20px;
@@ -162,6 +162,11 @@ input:checked + label {
             justify-content: center;
         }
 
+        #pokemon-jugador, #pokemon-rival {
+            font-weight: 700;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
         .victory-icon{
             width: 50px;
         }
@@ -180,7 +185,7 @@ input:checked + label {
     padding: 0px;
     border: 0px;
     
-    color: #fff;
+    color: aliceblue;
    
     font-weight: 800;
     
@@ -208,12 +213,19 @@ input:checked + label {
     width: 40px;
 }
 
+.attack-name {
+    font-weight: bold;
+    color: rgb(0, 174, 255); /* Cambia el color según tus preferencias */
+    font-weight: 800;
+    font-size: 30px;
+}
+
 #seleccionar-pokemon-jugador{
     border-radius: 20px;
     padding: 10px 20px;
     border: 0px;
     background-color: #30a7d7;
-    color: #fff;
+    color: aliceblue;
     width: 200px;
     font-weight: 800;
     margin-top: 40px;
@@ -235,7 +247,7 @@ input:checked + label {
     padding: 10px 20px;
     border: 0px;
     
-    color: #fff;
+    color: aliceblue;
     
     font-weight: 800;
     margin: 70px 0 ;
@@ -273,7 +285,7 @@ input:checked + label {
   
   /* Contenido del modal */
   .modal-content {
-    background-color: #fefefe; /* Fondo del contenido */
+    background-color: aliceblue; /* Fondo del contenido */
     margin: 15% auto; /* Margen superior e inferior y centrado horizontalmente */
     padding: 40px;
     border: 1px solid #888;
@@ -289,13 +301,48 @@ input:checked + label {
     gap: 20px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight:700;
+    font-size: 25px;
+    font-weight: 800;
+    
+  }
+
+  #modal-message-result{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 800;
+    
+    margin-top: 40px;
+
+  }
+
+  .modal-message-result-ganaste{
+    background-color: rgb(57, 255, 47)
+  }
+
+  .modal-message-result-perdiste{
+    background-color: rgba(255, 0, 0, 0.8)
+  }
+  .modal-message-result-empate{
+    background-color: rgb(255, 238, 0)
   }
   
   /* Botón para cerrar el modal */
   #closeModal {
-    float: right; /* Botón alineado a la derecha */
+    float:right; /* Botón alineado a la derecha */
     border-radius: 20px;
-    padding:  20px, 25px;
+    padding: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: 800;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+    border: 0px;
+    
+
   }
   
   
