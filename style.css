@@ -559,6 +559,9 @@ input:checked+label {
         padding-left: 20px;
         text-align: center;
     }
+    body#dummybodyid {
+        min-height: 100vh;
+    }
 
 
 }
