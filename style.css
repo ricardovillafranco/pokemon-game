@@ -125,7 +125,7 @@ input:checked+label {
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    min-height: 328px;
+    min-height: 408px;
 }
 
 
@@ -581,6 +581,13 @@ input:checked+label {
     }
     body#dummybodyid {
         min-height: 100vh;
+    }
+
+    .final-message-ganaste,  .final-message-perdiste  {
+       
+        font-size: 25px;
+        font-weight: 700;
+    
     }
 
 
