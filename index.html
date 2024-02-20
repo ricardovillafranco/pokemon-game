@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon</title>
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
 
     <h1 class="title-container-img"><img class="title-img" src="./assets/pokemon-logo.png" alt=""></h1>
@@ -13,86 +15,87 @@
 
         <h2 class="subtitle">Selecciona a tu pokemón</h2>
 
-      
-        <div  id="pokemon-seleccionado" class=""></div>
+
+        <div id="pokemon-seleccionado" class=""></div>
 
         <div id="cards"></div>
-          
-            <button id="seleccionar-pokemon-jugador">Seleccionar</button>
-       
+
+        <button id="seleccionar-pokemon-jugador" class="grow">Seleccionar</button>
+
     </section>
 
 
     <section id="seleccionar-ataque">
 
-       <div id="victorias-container">
-        <h2>Victorias</h2>
-        <div class="div-victorias-container">
-        <div id="pokemon-jugador-victorias-container" class="pokemon-jugador-victorias-container"></div>
+        <div id="victorias-container">
+            <h2>Victorias</h2>
+            <div class="div-victorias-container">
+                <div id="pokemon-jugador-victorias-container" class="pokemon-jugador-victorias-container"></div>
 
-        <div id="pokemon-rival-victorias-container" class="pokemon-rival-victorias-container"></div>
+                <div id="pokemon-rival-victorias-container" class="pokemon-rival-victorias-container"></div>
+
+            </div>
+
 
         </div>
-        
 
-       </div>
-       
 
         <div id="vidas-container" class="vidas-container">
-           
+
             <div id="pokemon-jugador-vidas-container" class="pokemon-jugador-vidas-container">
-            <img id="pokemon-jugador-img" src="" alt="">
-            
-            <div id="jugador-hearts-container"></div>
-            <p >Tu <span id="pokemon-jugador"></span> tiene <span id="vidas-jugador">3</span> corazones.</p>
-            
-           
+                <img id="pokemon-jugador-img" src="" alt="">
+
+                <div id="jugador-hearts-container"></div>
+                <p>Tu <span id="pokemon-jugador"></span> tiene <span id="vidas-jugador">3</span> corazones.</p>
+
+
             </div>
 
             <div class="pokemon-rival-vidas-container">
-            <img id="pokemon-rival-img" src="" alt="">
-            <div id="rival-hearts-container"></div>
-            <p>El <span id="pokemon-rival"></span> rival tiene <span id="vidas-rival">3</span> corazones.</p>
-            
-            
+                <img id="pokemon-rival-img" src="" alt="">
+                <div id="rival-hearts-container"></div>
+                <p>El <span id="pokemon-rival"></span> rival tiene <span id="vidas-rival">3</span> corazones.</p>
+
+
             </div>
         </div>
 
-        <div id="mensajes" >
+        <div id="mensajes">
             <p id="resultado"></p>
-            
-    
+
+
         </div>
 
         <!-- El modal -->
-<div id="myModal" class="modal">
-    
-    <!-- Contenido del modal -->
-    <div class="modal-content">
-        <button id="closeModal">X</button>
-      <!-- El elemento donde se mostrará el mensaje -->
-      <div id="modal-message"></div>
-      <div id="modal-message-result"></div>
-      <!-- Botón para cerrar el modal -->
-      
-    </div>
-  </div>
-  
+        <div id="myModal" class="modal">
+
+            <!-- Contenido del modal -->
+            <div class="modal-content">
+                <button id="closeModal">X</button>
+                <!-- El elemento donde se mostrará el mensaje -->
+                <div id="modal-message"></div>
+                <div id="modal-message-result"></div>
+                <!-- Botón para cerrar el modal -->
+
+            </div>
+        </div>
+
 
         <h2 class="atack-selection">Selecciona tu ataque</h2>
         <div id="ataques-container" class="ataques-container">
-      
-            
+
+
         </div>
 
-       
+
     </section>
 
     <section id="reiniciar">
-            <button id="jugar-nuevamente">Jugar de nuevo</button>        
+        <button id="jugar-nuevamente" class="swing">Jugar de nuevo</button>
     </section>
 
-<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>    
-<script src="./index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <script src="./index.js"></script>
 </body>
+
 </html>
