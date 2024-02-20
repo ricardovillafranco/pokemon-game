@@ -178,6 +178,10 @@ input:checked+label {
     align-items: center;
     justify-content: center;
 }
+#vidas-jugador,
+#vidas-rival{
+    min-height: 80px;
+}
 
 #pokemon-jugador,
 #pokemon-rival {
@@ -487,7 +491,9 @@ input:checked+label {
     .selected-pokemon {
         width: 80px;
     }
-
+    .victory-icon {
+        width:35px;
+    }
     .heart-img {
         width: 30px;
     }
@@ -498,10 +504,15 @@ input:checked+label {
     }
 
 
-    .pokemon-rival-vidas-container,
-    .pokemon-jugador-vidas-container {
-        min-height: 200px;
-    }
+
+
+
+
+.pokemon-rival-vidas-container , .pokemon-jugador-vidas-container{
+    
+    min-height: 160px;
+}
+
 
     .ataques-container {
         flex-direction: column;
@@ -544,6 +555,15 @@ input:checked+label {
     #modal-message-result {
         font-size: 20px;
     }
+
+    .final-message-ganaste,  .final-message-perdiste  {
+       
+        font-size: 25px;
+        font-weight: 700;
+    
+    }
+    
+  
 
 }
 
